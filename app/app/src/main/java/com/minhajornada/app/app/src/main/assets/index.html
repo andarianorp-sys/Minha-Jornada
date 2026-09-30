@@ -1,5 +1,125 @@
-app
-└── src
-    └── main
-        └── assets
-            └── index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#16a34a">
+<title>Minha Jornada</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7f5;color:#17231b}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#fff}
+header{background:linear-gradient(135deg,#15803d,#22c55e);color:#fff;padding:24px 20px 20px;border-radius:0 0 24px 24px}
+header h1{margin:0 0 6px;font-size:25px}header p{margin:0;opacity:.9}
+main{padding:18px 16px 90px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border:1px solid #e5e9e6;border-radius:16px;padding:16px;box-shadow:0 4px 14px #00000008}
+.metric{font-size:25px;font-weight:700;margin-top:5px}.label{font-size:13px;color:#68736c}
+.section{display:none}.section.active{display:block}.title{font-size:20px;font-weight:700;margin:6px 0 14px}
+.btn{border:0;border-radius:12px;padding:12px 15px;background:#16a34a;color:#fff;font-weight:700;cursor:pointer}.btn.secondary{background:#eef7f0;color:#166534}
+.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}
+input,select{width:100%;padding:11px;border:1px solid #d8dfda;border-radius:10px;font-size:15px;background:#fff}
+.meal{margin:10px 0}.meal h3{margin:0 0 5px;font-size:16px;color:#166534}.meal p{margin:0;color:#47534b;line-height:1.45}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:520px;width:100%;background:#fff;border-top:1px solid #e5e9e6;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:5}
+nav button{border:0;background:none;color:#657168;font-size:12px;padding:7px 2px;cursor:pointer}nav button.active{color:#15803d;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 5px;border-bottom:1px solid #edf0ee;text-align:left}
+.progress{height:12px;background:#e9eee9;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:#22c55e}
+.notice{background:#f0fdf4;border:1px solid #bbf7d0;padding:12px;border-radius:12px;margin-bottom:14px;color:#166534}
+.small{font-size:12px;color:#6b756e}.check{display:flex;align-items:center;gap:8px;margin:8px 0}.check input{width:auto}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<h1>Minha Jornada</h1>
+<p>Seu acompanhamento de emagrecimento</p>
+</header>
+
+<main>
+<section id="inicio" class="section active">
+<div class="notice">Registre seus dados e acompanhe sua evolução de forma simples.</div>
+<div class="grid">
+<div class="card"><div class="label">Peso atual</div><div class="metric" id="homePeso">95,2 kg</div></div>
+<div class="card"><div class="label">Meta</div><div class="metric" id="homeMeta">78 kg</div></div>
+<div class="card"><div class="label">IMC</div><div class="metric" id="homeImc">31,8</div></div>
+<div class="card"><div class="label">Perdido</div><div class="metric" id="homePerdido">0 kg</div></div>
+</div>
+<div class="card" style="margin-top:12px">
+<div class="label">Progresso até a meta</div>
+<div class="progress" style="margin:9px 0"><span id="bar" style="width:0%"></span></div>
+<div class="small" id="progressText">0% concluído</div>
+</div>
+<div class="card" style="margin-top:12px">
+<div class="title">Hoje</div>
+<div class="meal"><h3>🍳 Café da manhã</h3><p>2 ovos + 1 fatia de pão integral + 1 fruta</p></div>
+<div class="meal"><h3>🍛 Almoço</h3><p>Frango grelhado + arroz + feijão + salada</p></div>
+<div class="meal"><h3>🍎 Lanche</h3><p>1 fruta + iogurte natural</p></div>
+<div class="meal"><h3>🥗 Jantar</h3><p>Omelete com legumes + salada</p></div>
+</div>
+</section>
+
+<section id="cardapio" class="section">
+<div class="title">🍽️ Cardápio</div>
+<div class="row"><select id="dia"><option>Dia 1</option><option>Dia 2</option><option>Dia 3</option><option>Dia 4</option><option>Dia 5</option><option>Dia 6</option><option>Dia 7</option></select><button class="btn secondary" onclick="alert('Os próximos dias podem ser preenchidos com seu cardápio completo de 30 dias.')">30 dias</button></div>
+<div class="card" style="margin-top:12px">
+<div class="meal"><h3>☀️ Café da manhã</h3><p>2 ovos mexidos, 1 fatia de pão integral e 1 banana pequena.</p></div>
+<div class="meal"><h3>🍲 Almoço</h3><p>120 g de frango grelhado, 3 colheres de arroz, 1 concha pequena de feijão e salada à vontade.</p></div>
+<div class="meal"><h3>🍓 Lanche</h3><p>1 maçã + 1 iogurte natural.</p></div>
+<div class="meal"><h3>🌙 Jantar</h3><p>Omelete de 2 ovos com tomate e legumes + salada.</p></div>
+</div>
+<p class="small">Observação: este é um protótipo. Ajustes de calorias e porções devem ser feitos de acordo com orientação profissional.</p>
+</section>
+
+<section id="medidas" class="section">
+<div class="title">📏 Minhas medidas</div>
+<div class="card">
+<div class="row"><div><label class="small">Peso (kg)</label><input id="peso" type="number" step=".1" value="95.2"></div><div><label class="small">Meta (kg)</label><input id="meta" type="number" step=".1" value="78"></div></div>
+<div class="row" style="margin-top:10px"><div><label class="small">Altura (m)</label><input id="altura" type="number" step=".01" value="1.73"></div><div><label class="small">Cintura (cm)</label><input id="cintura" type="number" step=".1"></div></div>
+<div class="row" style="margin-top:10px"><div><label class="small">Abdômen (cm)</label><input id="abdomen" type="number" step=".1"></div><div><label class="small">Quadril (cm)</label><input id="quadril" type="number" step=".1"></div></div>
+<button class="btn" style="margin-top:12px;width:100%" onclick="salvar()">Salvar medidas</button>
+</div>
+<div class="title" style="margin-top:20px">Histórico</div>
+<div class="card"><table><thead><tr><th>Data</th><th>Peso</th><th>Cintura</th><th>Abd.</th></tr></thead><tbody id="historico"></tbody></table></div>
+</section>
+
+<section id="compras" class="section">
+<div class="title">🛒 Lista de compras</div>
+<div class="card">
+<label class="check"><input type="checkbox"> Arroz integral</label>
+<label class="check"><input type="checkbox"> Feijão</label>
+<label class="check"><input type="checkbox"> Peito de frango</label>
+<label class="check"><input type="checkbox"> Ovos</label>
+<label class="check"><input type="checkbox"> Iogurte natural</label>
+<label class="check"><input type="checkbox"> Banana</label>
+<label class="check"><input type="checkbox"> Maçã</label>
+<label class="check"><input type="checkbox"> Mamão</label>
+<label class="check"><input type="checkbox"> Alface</label>
+<label class="check"><input type="checkbox"> Tomate</label>
+<label class="check"><input type="checkbox"> Cenoura</label>
+<label class="check"><input type="checkbox"> Brócolis</label>
+</div>
+<div class="card" style="margin-top:12px">
+<div class="title">🚶 Caminhada</div>
+<div class="row"><input id="caminhada" type="number" placeholder="Minutos hoje"><button class="btn" onclick="salvarCaminhada()">Salvar</button></div>
+<p class="small" id="walkStatus">Meta sugerida no protótipo: 60 min/dia.</p>
+</div>
+</section>
+</main>
+
+<nav>
+<button class="active" onclick="show('inicio',this)">🏠<br>Início</button>
+<button onclick="show('cardapio',this)">🍽️<br>Cardápio</button>
+<button onclick="show('medidas',this)">📏<br>Medidas</button>
+<button onclick="show('compras',this)">🛒<br>Compras</button>
+</nav>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function show(id,btn){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function load(){let d=JSON.parse(localStorage.getItem('jornada')||'{"hist":[]}');if(d.peso)$('peso').value=d.peso;if(d.meta)$('meta').value=d.meta;if(d.altura)$('altura').value=d.altura;if(d.cintura)$('cintura').value=d.cintura;if(d.abdomen)$('abdomen').value=d.abdomen;render(d)}
+function salvar(){let d=JSON.parse(localStorage.getItem('jornada')||'{"hist":[]}');d.peso=+$('peso').value;d.meta=+$('meta').value;d.altura=+$('altura').value;d.cintura=+$('cintura').value;d.abdomen=+$('abdomen').value;d.hist.push({data:new Date().toLocaleDateString('pt-BR'),peso:d.peso,cintura:d.cintura,abdomen:d.abdomen});localStorage.setItem('jornada',JSON.stringify(d));render(d);alert('Medidas salvas!')}
+function render(d){let peso=d.peso||95.2,meta=d.meta||78,altura=d.altura||1.73;let imc=peso/(altura*altura);$('homePeso').textContent=peso.toFixed(1).replace('.',',')+' kg';$('homeMeta').textContent=meta.toFixed(1).replace('.',',')+' kg';$('homeImc').textContent=imc.toFixed(1).replace('.',',');let perdido=Math.max(0,95.2-peso);$('homePerdido').textContent=perdido.toFixed(1).replace('.',',')+' kg';let p=Math.max(0,Math.min(100,(95.2-peso)/(95.2-meta)*100));$('bar').style.width=p+'%';$('progressText').textContent=p.toFixed(0)+'% concluído';$('historico').innerHTML=(d.hist||[]).slice().reverse().map(x=>`<tr><td>${x.data}</td><td>${x.peso||'-'}</td><td>${x.cintura||'-'}</td><td>${x.abdomen||'-'}</td></tr>`).join('')}
+function salvarCaminhada(){let m=+$('caminhada').value||0;$('walkStatus').textContent=m+' min registrados hoje. '+(m>=60?'Meta atingida!':'Faltam '+(60-m)+' min para a meta.')}
+load();
+</script>
+</body>
+</html>
